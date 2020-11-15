@@ -31,5 +31,6 @@ public class Controller {
         if(keyEvent.getCode() == KeyCode.ENTER){
         textArea.appendText( textField.getText()+"\n");
         textField.clear();}
+
     }
 }
