@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.Controller">
+<top>
+  <MenuBar>
+      <Menu text="File">
+          <MenuItem text="Open" />
+          <MenuItem text="Save" />
+          <MenuItem text="Close" />
+      </Menu>
+
+  </MenuBar>
+</top>
+
+<center>
+    <TextArea  fx:id="textArea"  BorderPane.alignment="TOP_CENTER" />
+</center>
+
+
+<bottom>
+    <HBox>
+        <TextField text="Введите текст" fx:id="textField" onKeyPressed="#keypress" onMouseClicked="#clickedmouse" BorderPane.alignment="BOTTOM_LEFT" minWidth="258"  />
+        <Button  text="send" onAction="#clickbtn"  BorderPane.alignment="BOTTOM_RIGHT" />
+
+    </HBox>
+
+
+</bottom>
+
+</BorderPane>
