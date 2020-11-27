@@ -27,59 +27,40 @@ public class Controller implements Initializable {
     DataOutputStream out;
 
 
+        public void clickbtn () throws IOException {
+            out.writeUTF("Сергей: "+textField.getText()+"\n");
 
-    public void clickbtn() {
-        try {
-        out.writeUTF(textField.getText());
-        out.flush();
-        textField.clear();
-        textField.getOnAction();
-        textField.requestFocus();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
-
-
-
-
-    public void clickedmouse() {
-        textField.clear();
-
-    }
-
-
-
-
-
-    public void keypress(javafx.scene.input.KeyEvent keyEvent) {
-        try {
-            if(keyEvent.getCode() == KeyCode.ENTER){
-            out.writeUTF(textField.getText());
             textField.clear();
-            textField.getOnAction();}}
-        catch (IOException e){
-            e.printStackTrace();
+            textField.getOnAction();
+            textField.requestFocus();
+
+
         }
 
 
+        public void clickedmouse () {
+            textField.clear();
 
-    }
+        }
+
+
+        public void keypress (javafx.scene.input.KeyEvent keyEvent) throws IOException {
+
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                out.writeUTF("Сергей: "+textField.getText()+"\n");
+
+                textField.clear();
+                textField.getOnAction();
+            }
+
+
+        }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            ServerSocket sockets = new ServerSocket(PORT);
-            System.out.println("Ожидание клиента(ов)...");
-
-            Socket socket = sockets.accept();
-            System.out.println("Клиент(ы) подключен(ы)");
-
-            //socket = new Socket(IP_ADDRESS, PORT);
-
-
+            socket = new Socket(IP_ADDRESS, PORT);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
 
@@ -98,11 +79,7 @@ public class Controller implements Initializable {
                             }
 
                             System.out.println("Клиент: " + str);
-                            textArea.appendText("Сергей: "+str+"\n");
-
-
-
-
+                            textArea.appendText(str);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -124,3 +101,4 @@ public class Controller implements Initializable {
 
     }
 }
+
