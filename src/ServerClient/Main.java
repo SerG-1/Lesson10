@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+
 public class Main extends Application {
 
     @Override
@@ -18,6 +20,17 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+
+Controller start=new Controller();
+
+
+
+start.server();
+
+
+
+
         launch(args);
+
     }
 }

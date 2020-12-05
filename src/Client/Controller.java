@@ -19,7 +19,7 @@ public class Controller implements Initializable {
     @FXML
     public TextField textField;
     @FXML
-    private final String IP_ADDRESS = "localhost";
+    private final String IP_ADDRESS = "192.168.0.10";
     private final int PORT = 8189;
 
     private Socket socket;
@@ -64,9 +64,8 @@ public class Controller implements Initializable {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+            new Thread(()-> {
+
                     try {
                         while (true) {
                             String str = null;
@@ -91,7 +90,7 @@ public class Controller implements Initializable {
                             e.printStackTrace();
                         }
                     }
-                }
+
             }).start();
 
         } catch (
