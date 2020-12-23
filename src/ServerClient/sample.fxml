@@ -2,7 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.202-ea" fx:controller="ServerClient.Controller">
+
+<BorderPane prefHeight="234.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ServerClient.Controller">
     <top>
         <MenuBar>
             <Menu text="File">
@@ -15,14 +16,14 @@
     </top>
 
     <center>
-        <TextArea fx:id="textArea" BorderPane.alignment="TOP_CENTER" editable="false"/>
+        <TextArea fx:id="textArea" BorderPane.alignment="TOP_CENTER" editable="false" />
     </center>
 
 
     <bottom>
-        <HBox>
-            <TextField text="Введите текст" fx:id="textField" onKeyPressed="#keypress" onMouseClicked="#clickedmouse" BorderPane.alignment="BOTTOM_LEFT" minWidth="258"  />
-            <Button  text="send" onAction="#clickbtn"  BorderPane.alignment="BOTTOM_RIGHT" />
+        <HBox prefHeight="28.0" prefWidth="310.0">
+            <TextField fx:id="textField" minWidth="258" onKeyPressed="#keypress" onMouseClicked="#clickedmouse" text="Введите текст" BorderPane.alignment="BOTTOM_LEFT" />
+            <Button onAction="#clickbtn" text="send" BorderPane.alignment="BOTTOM_RIGHT" />
 
         </HBox>
 

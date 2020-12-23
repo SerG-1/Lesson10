@@ -15,11 +15,11 @@ import java.util.ResourceBundle;
 
 
 public class Controller implements Initializable {
+    @FXML
     public javafx.scene.control.TextArea textArea;
     @FXML
     public TextField textField;
-    @FXML
-    private final String IP_ADDRESS = "192.168.0.10";
+    private final String IP_ADDRESS = "192.168.0.11";
     private final int PORT = 8189;
 
     private Socket socket;

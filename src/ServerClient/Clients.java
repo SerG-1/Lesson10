@@ -1,78 +1,41 @@
 package ServerClient;
 
-import com.sun.security.ntlm.Server;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-
-import javax.swing.*;
-import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Clients extends Thread {
+public class Clients {
 
-    public TextArea textArea;
-    @FXML
-
-    Socket socket = null;
-    DataInputStream in;
     DataOutputStream out;
+    DataInputStream in;
+    public Socket socket;
 
+    public Clients(Socket socket,Controller controller) throws IOException {
+       this.socket = socket;
 
-    public Clients(Socket socket) {
-        try {
+       in = new DataInputStream(controller.socket.getInputStream());
+     
+        new Thread(()-> {
 
-            this.socket = socket;
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
-
-
-            new Thread(() -> {
+            while (true) {
                 try {
-                    Controller c = new Controller();
-
-                    while (true) {
-                        String str=null;
-
-                            str = in.readUTF();
-
-
-
-
-                        if (str.equals("/end")) {
-                            System.out.println("Клиент отключился");
-                            break;
-                        }
-
-                        System.out.println(str);
-
-
-                        Controller.broadCastMsg(str);
-
-                       textArea.appendText(str);
-                    }
+                    String str;
+                    str = in.readUTF();
+                    System.out.println(str);
+                    controller.textArea.appendText(str);
+                    controller.broadCastMsg(str);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-            }).start();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            }
+        }).start();
     }
 
-
-
-    void sendMsg(String msg) {
-        try {
-            out.writeUTF(msg);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void sendMsg (String msg) throws IOException {
+        out = new DataOutputStream(socket.getOutputStream());
+        out.writeUTF(msg);
     }
-
 
 }
